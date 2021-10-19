@@ -5,21 +5,23 @@ package com.example;
 import java.io.*;
 
 public class CensusAnalyseCompute {
-    /* censusDetailCSVLoad method to write the ata in the csv and use the comma in the field data
-     StringBuilder to write the data
+    /* censusDetailCSVLoad method to write the data in the csv and use the comma in the field data
+     * StringBuilder to write the data
+     * patha does not ave csv then throw the custom exception data
      */
     public boolean censusDetailCSVLoad(String path) throws CensusDataCustomeException, IOException {
             String path1 = "C:\\Users\\PC\\IdeaProjects\\CensusAnalyseCompute\\src\\main\\resources\\CensusCSVData.csv";
-            if (path1 == path) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("state").append(",").append("population").append(",").append("areaSrmtr").append(",").append("densitySqmtr").append("\n");
-                stringBuilder.append("maharashtra").append(",").append("1200000000").append(",").append("200000000").append(",").append("3000000000").append("\n");
-                FileWriter fileWriter = new FileWriter(path1);
-                fileWriter.write(stringBuilder.toString());
-                return true;
-            }
-        else
-                throw new CensusDataCustomeException("enter the proper csv to compute");
+              if(path.contains("txt")){
+                  throw new CensusDataCustomeException("give the proper type data");
+              }
+              else {
+                  StringBuilder stringBuilder = new StringBuilder();
+                  stringBuilder.append("state").append(",").append("population").append(",").append("areaSrmtr").append(",").append("densitySqmtr").append("\n");
+                  stringBuilder.append("maharashtra").append(",").append("1200000000").append(",").append("200000000").append(",").append("3000000000").append("\n");
+                  FileWriter fileWriter = new FileWriter(path1);
+                  fileWriter.write(stringBuilder.toString());
+                  return true;
+              }
             }
     /* display method to read the number of record present in the csv compute
      BuggerReader to read the data throught and return number of record data compute
@@ -40,11 +42,5 @@ public class CensusAnalyseCompute {
             e.printStackTrace();
         }
         return number;
-    }
-    /* DataCheckCSV method to compute the csv
-     * csv not proper then throw the exception data
-     */
-    public void DataCheckCSV(String path){
-
     }
 }

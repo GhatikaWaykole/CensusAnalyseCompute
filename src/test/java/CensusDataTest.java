@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class CensusDataTest {
     CensusAnalyseCompute censusAnalyseCompute;
-    String path = "C:\\Users\\PC\\IdeaProjects\\CensusAnalyseCompute\\src\\main\\resources\\CensusCSVData.csv";
+    String path = "C:\\Users\\PC\\IdeaProjects\\CensusAnalyseCompute\\src\\main\\resources\\CensusCSVData.txt";
     @Before
      public void detail() {
         censusAnalyseCompute = new CensusAnalyseCompute();
@@ -21,14 +21,13 @@ public class CensusDataTest {
        int result =  censusAnalyseCompute.display(path);
         Assert.assertEquals(2,result);
     }
-    /* method to check the csv
+    /* method to check the csv and type data
      * csv not correct then return the custom exception
      */
     @Test
-    public void GivenCensusDataCSV_WhenNotProper_ShouldReturnException() throws CensusDataCustomeException {
+    public void GivenCensusTypeCSV_WhenNotProper_ShouldReturnException() throws CensusDataCustomeException {
         try {
-            String path1 = "data";
-           boolean result = censusAnalyseCompute.censusDetailCSVLoad(path1);
+           boolean result = censusAnalyseCompute.censusDetailCSVLoad(path);
             Assert.assertTrue(result);
         }catch (CensusDataCustomeException | IOException e){
             e.printStackTrace();
